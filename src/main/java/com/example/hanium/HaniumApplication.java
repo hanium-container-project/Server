@@ -8,7 +8,6 @@ public class HaniumApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(HaniumApplication.class, args);
-		System.out.println("commit test");
 	}
 
 }
