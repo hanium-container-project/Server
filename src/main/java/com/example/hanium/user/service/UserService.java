@@ -24,7 +24,6 @@ public class UserService {
     private final JwtAuthenticationProvider jwtAuthenticationProvider;
     private final PasswordEncoder passwordEncoder;
     private final RedisTemplate redisTemplate;
-    private final UserDetailsService userDetailsService;
 
     @Transactional
     public ResponseDto userRegister(UserRegisterRequestDto userRegisterRequestDto) {
