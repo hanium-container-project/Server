@@ -32,14 +32,18 @@ public class User implements UserDetails {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "phone_number")
+    private String phoneNumber;
+
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles = new ArrayList<>();
 
     @Builder
-    public User(String name, String email, String password){
+    public User(String name, String email, String password, String phoneNumber){
         this.name = name;
         this.email = email;
         this.password = password;
+        this.phoneNumber = phoneNumber;
     }
 
     @Override

@@ -32,6 +32,7 @@ public class UserService {
         .email(userRegisterRequestDto.getEmail())
         .name(userRegisterRequestDto.getName())
         .password(passwordEncoder.encode(userRegisterRequestDto.getPassword()))
+        .phoneNumber(userRegisterRequestDto.getPhoneNumber())
         .build());
 
         return new ResponseDto("SUCCESS", user.getUserId());
