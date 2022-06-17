@@ -17,7 +17,7 @@ public class ApiErrorController {
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseDto illegalExHandler(IllegalArgumentException e){
         log.error("[exceptionHandler]", e);
-        return new ResponseDto("FAIL","요청 에러");
+        return new ResponseDto("FAIL","Request Error");
     }
 
     // 서버 에러 처리
@@ -25,7 +25,7 @@ public class ApiErrorController {
     @ExceptionHandler
     public ResponseDto exHandler(Exception e){
         log.error("[exceptionHandler]", e);
-        return new ResponseDto("FAIL", "서버 내부 에러");
+        return new ResponseDto("FAIL", "Internal Server Error");
     }
 
     // 런타임 에러 처리
