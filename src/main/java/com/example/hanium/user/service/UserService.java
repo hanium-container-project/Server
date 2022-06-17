@@ -30,11 +30,20 @@ public class UserService {
 
     @Transactional
     public ResponseDto userRegister(UserRegisterRequestDto userRegisterRequestDto) {
+
+        if(!userRegisterRequestDto.getPassword().equals(userRegisterRequestDto.getCheckPassword())){
+            return new ResponseDto("FAIL", "입력한 비밀번호가 서로 다릅니다.");
+        }
+
         User user = userRepository.save(User.builder()
         .email(userRegisterRequestDto.getEmail())
         .name(userRegisterRequestDto.getName())
+        .type(userRegisterRequestDto.getType())
         .password(passwordEncoder.encode(userRegisterRequestDto.getPassword()))
+        .companyName(userRegisterRequestDto.getCompanyName())
+        .registrationNumber(userRegisterRequestDto.getRegistrationNumber())
         .phoneNumber(userRegisterRequestDto.getPhoneNumber())
+        .fax(userRegisterRequestDto.getFax())
         .build());
 
         return new ResponseDto("SUCCESS", user.getUserId());
