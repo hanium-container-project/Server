@@ -1,6 +1,7 @@
 package com.example.hanium.user.service;
 
 import com.example.hanium.config.JwtAuthenticationProvider;
+import com.example.hanium.file.domain.FileRepository;
 import com.example.hanium.user.ResponseDto;
 import com.example.hanium.user.domain.User;
 import com.example.hanium.user.domain.UserRepository;
@@ -8,8 +9,8 @@ import com.example.hanium.user.dto.TokenDto;
 import com.example.hanium.user.dto.UserLoginRequestDto;
 import com.example.hanium.user.dto.UserRegisterRequestDto;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -18,12 +19,14 @@ import java.util.concurrent.TimeUnit;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class UserService {
 
     private final UserRepository userRepository;
     private final JwtAuthenticationProvider jwtAuthenticationProvider;
     private final PasswordEncoder passwordEncoder;
     private final RedisTemplate redisTemplate;
+    private final FileRepository fileRepository;
 
     @Transactional
     public ResponseDto userRegister(UserRegisterRequestDto userRegisterRequestDto) {

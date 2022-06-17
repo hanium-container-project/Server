@@ -5,16 +5,15 @@ import com.example.hanium.user.dto.UserLoginRequestDto;
 import com.example.hanium.user.dto.UserRegisterRequestDto;
 import com.example.hanium.user.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/user") // "URL Mapping"들이 "auth"로 시작
+@Slf4j
 public class UserController {
 
     private final UserService userService;
