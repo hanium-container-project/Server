@@ -24,13 +24,14 @@ public class FileService {
     private String fileDirPath;
     private final FileRepository fileRepository;
 
-    public ResponseDto fileUpload(MultipartFile multipartFile) {
+    public ResponseDto fileUpload(MultipartFile multipartFile, String type, Long id) {
         log.info("multiPartFile = {}", multipartFile);
         log.info("multiPartFileName = {}", multipartFile.getOriginalFilename());
 
         try{
             File file = storeFile(multipartFile);
-            // 첫번째가 사용자가 지정한 파일 이름, 두번째가 서버에 저장할 파일 이름
+            file.setType(type);
+            file.setUserId(id);
             log.info("file = {}",file);
 
             if(null == file){
@@ -72,6 +73,7 @@ public class FileService {
 
         // "fileDirPath + storeFileName"의 파일 객체가 생성 후 저장
         multipartFile.transferTo(new java.io.File(getFullPath(storeFileName)));
+        // 첫번째가 사용자가 지정한 파일 이름, 두번째가 서버에 저장할 파일 이름
         return new File(originalFileName, storeFileName);
     }
 
