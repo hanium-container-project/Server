@@ -2,10 +2,11 @@ package com.example.hanium.user.service;
 
 import com.example.hanium.config.JwtAuthenticationProvider;
 import com.example.hanium.file.domain.FileRepository;
-import com.example.hanium.user.ResponseDto;
+import com.example.hanium.ResponseDto;
 import com.example.hanium.user.domain.User;
 import com.example.hanium.user.domain.UserRepository;
 import com.example.hanium.user.dto.TokenDto;
+import com.example.hanium.user.dto.UserDeleteRequestDto;
 import com.example.hanium.user.dto.UserLoginRequestDto;
 import com.example.hanium.user.dto.UserRegisterRequestDto;
 import lombok.RequiredArgsConstructor;
@@ -33,6 +34,10 @@ public class UserService {
 
         if(!userRegisterRequestDto.getPassword().equals(userRegisterRequestDto.getCheckPassword())){
             return new ResponseDto("FAIL", "입력한 비밀번호가 서로 다릅니다.");
+        }
+
+        if(userRepository.existsByEmail(userRegisterRequestDto.getEmail())){
+            return new ResponseDto("FAIL", "이미 존재하는 이메일입니다.");
         }
 
         User user = userRepository.save(User.builder()
@@ -67,5 +72,18 @@ public class UserService {
                 tokenDto.getRefreshToken(), tokenDto.getRefreshTokenTime(), TimeUnit.MILLISECONDS);
 
         return new ResponseDto("SUCCESS", tokenDto);
+    }
+
+    public ResponseDto userDelete(UserDeleteRequestDto userDeleteRequestDto) {
+
+        String email = userDeleteRequestDto.getEmail();
+
+        if (!userRepository.existsByEmail(email)) {
+            return new ResponseDto("FAIL", "존재하지 않는 이메일입니다.");}
+
+        User user = userRepository.findByEmail(email);
+        userRepository.delete(user);
+
+        return new ResponseDto("SUCCESS",user.getUserId());
     }
 }

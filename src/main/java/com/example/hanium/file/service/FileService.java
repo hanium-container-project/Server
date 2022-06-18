@@ -2,7 +2,7 @@ package com.example.hanium.file.service;
 
 import com.example.hanium.file.domain.File;
 import com.example.hanium.file.domain.FileRepository;
-import com.example.hanium.user.ResponseDto;
+import com.example.hanium.ResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

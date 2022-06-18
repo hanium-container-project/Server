@@ -1,6 +1,7 @@
 package com.example.hanium.user.controller;
 
-import com.example.hanium.user.ResponseDto;
+import com.example.hanium.ResponseDto;
+import com.example.hanium.user.dto.UserDeleteRequestDto;
 import com.example.hanium.user.dto.UserLoginRequestDto;
 import com.example.hanium.user.dto.UserRegisterRequestDto;
 import com.example.hanium.user.service.UserService;
@@ -27,4 +28,10 @@ public class UserController {
     public ResponseDto userLogin(@Valid @RequestBody UserLoginRequestDto userLoginRequestDto){
         return userService.userLogin(userLoginRequestDto);
     }
+
+    @DeleteMapping("withdrawal")
+    public ResponseDto userWithdrawal(@Valid @RequestBody UserDeleteRequestDto userDeleteRequestDto){
+        return userService.userDelete(userDeleteRequestDto);
+    }
+
 }
