@@ -1,4 +1,4 @@
-package com.example.hanium.user;
+package com.example.hanium;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

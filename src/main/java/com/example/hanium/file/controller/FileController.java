@@ -1,7 +1,7 @@
 package com.example.hanium.file.controller;
 
 import com.example.hanium.file.service.FileService;
-import com.example.hanium.user.ResponseDto;
+import com.example.hanium.ResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
